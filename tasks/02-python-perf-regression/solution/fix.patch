@@ -1,0 +1,15 @@
+--- a/repo/dedup.py
++++ b/repo/dedup.py
+@@ -28,8 +28,11 @@
+     List[T]
+         Deduplicated list in insertion order.
+     """
+-    result: List[T] = []
++    seen: set = set()
++    result: List[T] = []
+     for item in items:
+-        if item not in result:  # BUG: O(n) scan on list instead of O(1) set lookup
++        if item not in seen:
++            seen.add(item)
+             result.append(item)
+     return result

@@ -1,0 +1,11 @@
+--- a/src/main/java/com/debuglab/Counter.java
++++ b/src/main/java/com/debuglab/Counter.java
+@@ -15,7 +15,7 @@
+      * @param threshold the upper bound; counter is incremented only if count < threshold
+      * @return true if the counter was incremented, false otherwise
+      */
+-    public boolean incrementIfBelow(int threshold) {
++    public synchronized boolean incrementIfBelow(int threshold) {
+         if (count < threshold) {  // check
+             count++;               // act — race window between check and act!
+             return true;
